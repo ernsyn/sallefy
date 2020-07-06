@@ -35,7 +35,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     Optional<User> findOneByEmailIgnoreCase(String email);
 
-    @EntityGraph(GRAPH_USER_ENTITY_ALL)
     Optional<User> findOneByLogin(String login);
 
     @EntityGraph(attributePaths = AUTHORITIES)
@@ -51,7 +50,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     @Override
     @Cacheable(cacheNames = USERS_BY_EMAIL_CACHE)
-    @EntityGraph(GRAPH_USER_ENTITY_ALL)
     List<User> findAll(Specification<User> specification);
 
     @Override
